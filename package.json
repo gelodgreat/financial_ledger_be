@@ -1,7 +1,8 @@
 {
-  "name": "API_TEMPLATE",
-  "description": "Starter Pack creating API",
+  "name": "financial-ledger",
+  "description": "Backend APi for Financial Ledger",
   "scripts": {
+    "dev": "env-cmd -f ./.env nodemon app.js",
     "server": "nodemon app.js",
     "start": "npm run server"
   },
@@ -17,5 +18,9 @@
     "morgan": "~1.9.0",
     "request": "^2.87.0"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.4"
+  }
 }

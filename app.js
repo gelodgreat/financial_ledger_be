@@ -4,10 +4,12 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const db_connection = require('./common/db_connection');
-const DataModels = require('./model/DataModels');
-
-const user_api = require('./api/user_api');
+//Connections
+const connection = require('./common/connection');
+const DataModels = require('./model');
+//Models
+const Users = require('./api/Users');
+const Income = require('./api/Income');
 
 app.use(cors());
 app.use(logger('dev'));
@@ -20,7 +22,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 
-app.use('/', user_api);
+app.use('/', Users);
+// app.use('/', Income);
 
 app.listen(8110, () => {
     console.log("Server Running @ 8110");

@@ -1,9 +1,10 @@
-User = require('../model/DataModels')['User'];
+'use strict';
+
+const User = require('../../model')['User'];
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 
 exports.getAll = async (req, res) => {
-
     User.find((err, users) => {
         if (err) {
             res.json({
