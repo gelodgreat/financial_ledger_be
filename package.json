@@ -3,7 +3,7 @@
   "description": "Backend APi for Financial Ledger",
   "scripts": {
     "dev": "env-cmd -f ./.env nodemon app.js",
-    "server": "nodemon app.js",
+    "server": "nodemon src/app.js",
     "start": "npm run server"
   },
   "dependencies": {
