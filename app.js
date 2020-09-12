@@ -5,11 +5,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 //Connections
-const connection = require('./common/connection');
-const DataModels = require('./model');
+const connection = require('./src/common/connection');
+const DataModels = require('./src/model');
 //Models
-const Users = require('./api/Users');
-const Income = require('./api/Income');
+const Users = require('./src/api/Users');
+const Income = require('./src/api/Income');
 const { PORT } = process.env;
 
 app.use(cors());
