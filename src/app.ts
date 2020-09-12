@@ -3,20 +3,16 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import cors from 'cors'
-import { Expense, Income, User } from './model'
 import connection from './common/connection'
-const app: express.Application = express()
-const { PORT } = process.env
-connection.startSession()
 import IncomeAPI from './api/Income'
 import UserAPI from './api/Users'
 import ExpenseAPI from './api/Expenses'
 
+const app: express.Application = express()
+const { PORT } = process.env
+connection.startSession()
 //Connections
 //Models
-// const Users = require('./api/Users')
-// const IncomeAPI = require('./api/Income')
-// const Expense = require('./api/Expenses');
 
 app.use(cors())
 app.use(logger('dev'))

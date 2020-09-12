@@ -42,7 +42,7 @@ exports.getById = (req, res) => {
 exports.authAccess = async (req, res) => {
     const data = req.body;
     const email = data['email'];
-    const password = data['password']
+    const password = data['password'];
     try {
         if (email && password) {
             var user = await User.findOne({
