@@ -5,13 +5,15 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const { PORT } = process.env;
+
 //Connections
 const connection = require('./common/connection');
 const DataModels = require('./model');
+
 //Models
 const Users = require('./api/Users');
-const Expense = require('./api/Expenses')
 const Income = require('./api/Income');
+const Expense = require('./api/Expenses');
 
 app.use(cors());
 app.use(logger('dev'));
@@ -25,8 +27,8 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 
 app.use('/', Users);
+app.use('/', Income);
 // app.use('/', Expense)
-// app.use('/', Income);
 
 app.listen(PORT, () => {
     console.log(`Server Running @ ${PORT}`);
