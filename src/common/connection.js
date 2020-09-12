@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const DatabaseConnection = process.env.MONGODB_URL ? process.env.MONGODB_URL : "mongodb://admin:amdin@localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false"
+const DatabaseConnection = process.env.MONGODB_URL ? process.env.MONGODB_URL : "mongodb://admin:admin@localhost:27017/financial?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false"
 console.log(DatabaseConnection)
 try {
     mongoose.connect(DatabaseConnection, {
