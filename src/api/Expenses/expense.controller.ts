@@ -40,8 +40,38 @@ export default class ExpenseController {
       const expense = await expenseData.save()
       res.status(200).send({
         status: 'success',
-        message: 'Expenses retrieved successfully',
+        message: 'Expenses added successfully',
         data: expense
+      })
+    } catch (error) {
+      res.status(400).send({
+        status: 'Error',
+        message: error
+      })
+    }
+  }
+
+  public async updateExpense (req: Request, res: Response) {
+    try {
+      const expenseId = req.params.id
+      const body = req.body
+      const data = {
+        date: body['date'],
+        expense: body['expense'],
+        description: body['description'],
+        user: ''
+      }
+
+      const expenseData = Expense.findOneAndUpdate(
+        {
+          _id: new ObjectID(expenseId)
+        },
+        data
+      )
+      res.status(200).send({
+        status: 'success',
+        message: 'Expenses updated successfully',
+        data: expenseData
       })
     } catch (error) {
       res.status(400).send({

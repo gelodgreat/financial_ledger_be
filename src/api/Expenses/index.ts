@@ -10,6 +10,7 @@ expense
   .get(controller.getAllExpenses)
   .post(controller.addExpense)
 
-expense.route('/expense/:userId').get(controller.getAllExpenses)
+expense.route('/expense/u/:userId').get(controller.getAllExpenses)
+expense.route('/expense/:expenseId').put(controller.updateExpense)
 
 export default expense
