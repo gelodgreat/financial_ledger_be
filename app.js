@@ -10,6 +10,7 @@ const DataModels = require('./model');
 //Models
 const Users = require('./api/Users');
 const Income = require('./api/Income');
+const { PORT } = process.env;
 
 app.use(cors());
 app.use(logger('dev'));
@@ -25,7 +26,7 @@ app.use(cookieParser());
 app.use('/', Users);
 // app.use('/', Income);
 
-app.listen(8110, () => {
-    console.log("Server Running @ 8110");
+app.listen(PORT, () => {
+    console.log(`Server Running @ ${PORT}`);
 })
 module.exports = app;
