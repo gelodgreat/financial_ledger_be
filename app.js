@@ -4,13 +4,14 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const { PORT } = process.env;
 //Connections
 const connection = require('./src/common/connection');
 const DataModels = require('./src/model');
 //Models
 const Users = require('./src/api/Users');
+const Expense = require('./src/api/Expenses')
 const Income = require('./src/api/Income');
-const { PORT } = process.env;
 
 app.use(cors());
 app.use(logger('dev'));
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 
 app.use('/', Users);
+// app.use('/', Expense)
 // app.use('/', Income);
 
 app.listen(PORT, () => {
