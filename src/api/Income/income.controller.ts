@@ -38,7 +38,7 @@ export default class IncomeController {
     } catch (err) {
       res.status(400).send({
         status: "Error",
-        message: err,
+        message: err.message,
       });
     }
   }
