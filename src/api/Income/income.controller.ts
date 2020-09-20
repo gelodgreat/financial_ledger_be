@@ -2,8 +2,8 @@
 import { Request, Response } from 'express'
 import { Income } from '../../model'
 import { ObjectID } from 'mongodb'
-
 export default class IncomeController {
+
 
     public async getAllIncome (req: Request, res: Response) {
         try {
@@ -29,18 +29,17 @@ export default class IncomeController {
 
         public async addIncome (req: Request, res: Response) {
             try {
-                const body= req.body
-                const savedIncomePayload = await Income.insertMany(body);
-                
+                const body= req.body;
+                const savedIncomePayload = await Income.insertMany(body);    
                 res.status(201).send({
                 status: 'success',
                 message: 'Successfully added income.',
                 data: savedIncomePayload
                 })
-            } catch (error) {
+            } catch (err) {
                 res.status(400).send({
                 status: 'Error',
-                message: error
+                message: err
                 })
             }
             }
@@ -49,44 +48,77 @@ export default class IncomeController {
                 try{
                     const id = req.params.id
                     const body = req.body;
-                const data = {
-                    date: body['date'],
-                    income: body['income'],
-                    description: body['description']
-            };
-               const savedIncomePayload = await Income.findOneAndUpdate({_id: new ObjectID(id)}, data, {new: true});
-                    res.status(200).send({
-                        status: "success",
-                        message: "Successfully updated income.",
-                        updatedData: savedIncomePayload
-                    });
-                    }catch(Exception){
+
+
+                    const data = {
+                        date: body['date'],
+                        income: body['income'],
+                        description: body['description']
+                    };
+
+                   const updatetIncomePayload = await Income.findOneAndUpdate({_id: new ObjectID(id)}, data, {new: true});
+                
+               
+               if (updatetIncomePayload==null){
+                throw ('Income does not exist.');
+               }
+               else{
+                res.status(200).send({
+                    status: "success",
+                    message: "Successfully updated income.",
+                    updatedData: updatetIncomePayload
+                });
+                }
+                }catch(Exception){
+                    if (Exception.message !==undefined){
+
+                        if (Exception.message.includes("Argument passed in must be a single String of 12 bytes or a string of 24 hex characters")){
+                            res.status(422).send({type: "ValidationError",message: 'Income does not exist.'});
+                        }
+                    }else{   
                         res.status(422).send({type: "ValidationError",message: Exception});
-                        console.error(Exception);
                     }
                 }
+                  
+            }
+
         
         
                 public async deleteIncome (req: Request, res: Response) {
                     try{
                         const id = req.params.id
                         const body = req.body;
-                    const data = {
+                        const data = {
                         date: body['date'],
                         income: body['income'],
                         description: body['description']
                 };
                    const deletedIncomePayload = await Income.findOneAndDelete({_id: new ObjectID(id)});
+                   
+                   
+                   if (deletedIncomePayload==null){
+                    throw ('Income does not exist.');
+                    }
+
+                    else{                    
                         res.status(200).send({
                             status: "success",
                             message: "Successfully deleted income.",
                             deletedData: deletedIncomePayload
                         });
-                        }catch(Exception){
+                   }
+                        
+                    }catch(Exception){
+                        if (Exception.message !==undefined){
+
+                            if (Exception.message.includes("Argument passed in must be a single String of 12 bytes or a string of 24 hex characters")){
+                                res.status(422).send({type: "ValidationError",message: 'Income does not exist.'});
+                            }
+                        }else{   
                             res.status(422).send({type: "ValidationError",message: Exception});
-                            console.error(Exception);
                         }
                     }
+                }
 
 
 
