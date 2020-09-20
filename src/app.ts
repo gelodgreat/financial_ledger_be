@@ -7,6 +7,7 @@ import connection from './common/connection'
 import IncomeAPI from './api/Income'
 import UserAPI from './api/Users'
 import ExpenseAPI from './api/Expenses'
+import AuthenticationAPI from './api/Authentication'
 
 const app: express.Application = express()
 const { PORT } = process.env
@@ -41,6 +42,7 @@ app.use((err:Error,req:Request,res:Response, next:NextFunction) => {
 
 app.use(cookieParser())
 
+app.use('/', AuthenticationAPI)
 app.use('/', IncomeAPI)
 app.use('/', ExpenseAPI)
 app.use('/', UserAPI)
