@@ -1,0 +1,1 @@
+export {expenseData } from './expense'

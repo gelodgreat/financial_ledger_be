@@ -2,9 +2,9 @@
 import { Request, Response } from 'express'
 import { Expense } from '../../model'
 import { ObjectID } from 'mongodb'
-
+import { expenseData } from '../../types';
 export default class ExpenseController {
-  public async getAllExpenses (req: Request, res: Response) {
+  public async getAllExpenses(req: Request, res: Response) {
     try {
       const userId = req.params.id
       const query = req.query
@@ -26,14 +26,14 @@ export default class ExpenseController {
     }
   }
 
-  public async addExpense (req: Request, res: Response) {
+  public async addExpense(req: Request, res: Response) {
     try {
       const body = req.body
-      const data = {
+      const data: expenseData = {
         date: body['date'],
         expense: body['expense'],
         description: body['description'],
-        user: ''
+        uid: ''
       }
 
       const expenseData = new Expense(data)
@@ -51,7 +51,7 @@ export default class ExpenseController {
     }
   }
 
-  public async updateExpense (req: Request, res: Response) {
+  public async updateExpense(req: Request, res: Response) {
     try {
       const expenseId = req.params.id
       const body = req.body
