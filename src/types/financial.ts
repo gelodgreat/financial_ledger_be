@@ -1,8 +1,6 @@
-
 export interface expenseData  {
-    date:string
-    expense:string
+    date:Date
+    expense:number
     description: string
     uid:string
-  }
-  
+}  

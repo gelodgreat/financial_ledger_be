@@ -23,7 +23,7 @@ const ExpenseSchema = new mongoose.Schema(
       type: Date,
       default: Date.now()
     },
-    userId: {
+    uid: {
       type: ObjectId,
       required: true,
       ref: 'User'
