@@ -28,14 +28,13 @@ export async function loginEmail (email:string, password: string) {
     }
     
 export async function createUserWithEmailAndPassword (email:string, password: string) {
-    let signInData;
+    let signUpData;
     await firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then((value)=> ()=> {signInData=value})
+        .then((value)=> ()=> {signUpData=value})
         .catch((Error) => {throw Error})
         ;
-      console.log(signInData);
-        return signInData;
+        return signUpData;
         
     }
