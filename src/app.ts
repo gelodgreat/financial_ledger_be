@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import cors from "cors";
 import connection from "./common/connection";
-import { ExpenseAPI, IncomeAPI, UserAPI } from "./api";
+import {AuthenticationAPI, ExpenseAPI, IncomeAPI, UserAPI} from "./api";
 
 const app: express.Application = express();
 const { PORT } = process.env;
@@ -43,6 +43,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 app.use(cookieParser());
 
+app.use("/", AuthenticationAPI);
 app.use("/", IncomeAPI);
 app.use("/", ExpenseAPI);
 app.use("/", UserAPI);

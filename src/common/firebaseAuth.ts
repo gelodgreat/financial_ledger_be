@@ -1,6 +1,7 @@
 'use strict'
 import firebase from 'firebase';
-import { Request, Response, NextFunction, response } from 'express';
+import { response } from 'express';
+import { resolve } from 'path';
 
 export const firebaseAPIKey = {
     apiKey: 'AIzaSyDuDcqcH0eKNWE1Y90Q-5CwjLKH_IsAJlo',
@@ -16,19 +17,25 @@ export const firebaseAPIKey = {
 firebase.initializeApp(firebaseAPIKey);
 
 export async function loginEmail (email:string, password: string) {
-    try{
-
-    
-    firebase
+  let signInData;
+    await firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        
+        .then((value) => {signInData=value})
+        .catch((Error) => {throw Error})
         ;
-    }catch (err) {
-        response.status(400).send({
-          status: "Error",
-          message: err.message,
-        });
-      }
+        return signInData;
+    }
     
-}
+export async function createUserWithEmailAndPassword (email:string, password: string) {
+    let signInData;
+    await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((value)=> ()=> {signInData=value})
+        .catch((Error) => {throw Error})
+        ;
+      console.log(signInData);
+        return signInData;
+        
+    }
