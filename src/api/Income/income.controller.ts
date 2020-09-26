@@ -34,6 +34,7 @@ export default class IncomeController {
         status: "success",
         message: "Successfully added income.",
         data: savedIncomePayload,
+        uid: ''
       });
     } catch (err) {
       res.status(400).send({
@@ -52,6 +53,7 @@ export default class IncomeController {
         date: body["date"],
         income: body["income"],
         description: body["description"],
+        uid: ''
       };
 
       const updatetIncomePayload = await Income.findOneAndUpdate(
@@ -95,6 +97,7 @@ export default class IncomeController {
         date: body["date"],
         income: body["income"],
         description: body["description"],
+        uid:''
       };
       const deletedIncomePayload = await Income.findOneAndDelete({
         _id: new ObjectID(id),
@@ -107,6 +110,7 @@ export default class IncomeController {
           status: "success",
           message: "Successfully deleted income.",
           deletedData: deletedIncomePayload,
+
         });
       }
     } catch (Exception) {

@@ -1,5 +1,5 @@
-import mongoose from 'mongoose'
-
+import mongoose, { Schema } from 'mongoose'
+const ObjectId = Schema.Types.ObjectId
 const IncomeSchema = new mongoose.Schema(
   {
     date: {
@@ -20,6 +20,11 @@ const IncomeSchema = new mongoose.Schema(
     updatedAt: {
       type: Date,
       default: Date.now()
+    },
+    uid: {
+      type: ObjectId,
+      required: true,
+      ref: 'User'
     }
   },
   {
