@@ -3,4 +3,12 @@ export interface expenseData  {
     expense:number
     description: string
     uid:string
+}
+
+
+export interface incomeData  {
+    date:Date
+    income:number
+    description: string
+    uid:string
 }  
